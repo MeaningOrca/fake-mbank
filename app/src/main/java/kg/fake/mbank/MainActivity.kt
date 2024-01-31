@@ -1,5 +1,7 @@
 package kg.fake.mbank
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -18,6 +20,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
@@ -27,6 +30,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+            val activity = LocalContext.current as Activity
             val controller = remember { LifecycleCameraController(applicationContext) }
             controller.bindToLifecycle(LocalLifecycleOwner.current)
 
@@ -47,7 +51,9 @@ class MainActivity : ComponentActivity() {
                 )
 
                 Button(
-                    onClick = { },
+                    onClick = {
+                        activity.startActivity(Intent(this@MainActivity, BillActivity::class.java))
+                    },
 
                     colors = ButtonDefaults.buttonColors(
                         containerColor = Color.White,

@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-feature android:name="android.hardware.camera" />
+
     <uses-permission android:name="android.permission.CAMERA" />
 
     <application
@@ -15,6 +16,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MBANK"
         tools:targetApi="31">
+        <activity
+            android:name=".BillActivity"
+            android:exported="false"
+            android:label="@string/title_activity_bill"
+            android:theme="@style/Theme.MBANK" />
         <activity
             android:name=".MainActivity"
             android:exported="true"
