@@ -38,14 +38,14 @@ class BillActivity : ComponentActivity() {
 
         Timer().schedule(2000) {
             setContent {
-                Kairat()
+                Check()
             }
         }
     }
 }
 
 @Composable
-fun Kairat() {
+fun Check() {
     // Тут делай что хочешь
     Column(
         Modifier
