@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -17,13 +18,18 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import java.text.SimpleDateFormat
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.util.Calendar
+import java.util.Date
+import java.util.Locale
 import java.util.Timer
 import kotlin.concurrent.schedule
 
@@ -36,35 +42,34 @@ class BillActivity : ComponentActivity() {
             }
         }
 
-        Timer().schedule(2000) {
+        Timer().schedule(1500) {
             setContent {
-                Check()
+                Column(
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp), Arrangement.Center
+                ) {
+                    Row(
+                        Modifier.fillMaxWidth(),
+                        Arrangement.SpaceBetween,
+                        Alignment.CenterVertically
+                    ) {
+                        Image(
+                            painterResource(R.drawable.mbank_logo), contentDescription = null,
+                            modifier = Modifier.width(100.dp)
+                        )
+
+                        IconButton(onClick = { finish() }) {
+                            Icon(painterResource(R.drawable.close), contentDescription = null)
+                        }
+                    }
+
+                    Row(Modifier.fillMaxWidth(), Arrangement.SpaceBetween) {
+                        Text(text = getString(R.string.operation_date))
+                        Text(text = SimpleDateFormat("dd.MM.yyyy, HH:mm", Locale.US).format(Date()))
+                    }
+                }
             }
         }
-    }
-}
-
-@Composable
-fun Check() {
-    // Тут делай что хочешь
-    Column(
-        Modifier
-            .fillMaxWidth()
-            .padding(16.dp), Arrangement.Center) {
-        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
-            Image(
-                painterResource(R.drawable.mbank_logo), contentDescription = null,
-                modifier = Modifier.width(100.dp)
-            )
-
-            IconButton(onClick = { }) { // finish()
-                Icon(painterResource(R.drawable.close), contentDescription = null)
-            }
-        }
-
-        Image(
-            painterResource(R.drawable.check), contentDescription = null,
-            modifier = Modifier.width(75.dp)
-        )
     }
 }

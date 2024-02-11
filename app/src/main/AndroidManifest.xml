@@ -20,7 +20,9 @@
             android:name=".BillActivity"
             android:exported="false"
             android:label="@string/title_activity_bill"
-            android:theme="@style/Theme.MBANK" />
+            android:theme="@style/Theme.MBANK"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".MainActivity"
             android:exported="true"
