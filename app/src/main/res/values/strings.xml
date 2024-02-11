@@ -4,4 +4,6 @@
     <string name="check">Транзакция успешно проведена</string>
     <string name="operation_date">Дата операции</string>
     <string name="vehicle_code">Код транспорта</string>
+    <string name="my_qr">Мой QR</string>
+    <string name="from_gallery">Из галереи</string>
 </resources>
