@@ -2,7 +2,7 @@ package kg.fake.mbank
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.widget.Toast
+import android.content.Intent
 import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.ImageProxy
 import com.google.mlkit.vision.barcode.BarcodeScannerOptions
@@ -30,7 +30,15 @@ class BarcodeAnalyzer(private val context: Context) : ImageAnalysis.Analyzer {
                     barcode?.takeIf { it.isNotEmpty() }
                         ?.mapNotNull { it.rawValue }
                         ?.joinToString(",")
-                        ?.let { Toast.makeText(context, it, Toast.LENGTH_SHORT).show() }
+                        ?.let {
+                            if (it.startsWith("tulpar")) {
+                                context.startActivity(
+                                    Intent(
+                                        context,
+                                        BillActivity::class.java
+                                    ).apply { putExtra("vehicleCode", it.substring(6)) })
+                            }
+                        }
                 }.addOnCompleteListener {
                     imageProxy.close()
                 }
